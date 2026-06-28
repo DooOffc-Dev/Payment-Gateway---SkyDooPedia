@@ -33,7 +33,6 @@
   </script>
 
   <style>
-    /* ===== DARK MODE DEFAULT ===== */
     body {
       background: #0f172a;
       transition: background 0.3s ease, color 0.3s ease;
@@ -144,7 +143,6 @@
       line-height: 1.5;
     }
 
-    /* ===== LIGHT MODE TEXT COLOR OVERRIDES ===== */
     .light h1, .light h2, .light label, .light .text-slate-300, .light .text-slate-400 {
       color: #0f172a !important;
     }
@@ -153,7 +151,6 @@
     .light .text-green-400 { color: #16a34a !important; }
     .light .text-green-300 { color: #15803d !important; }
 
-    /* ===== TOGGLE MODE BUTTON ===== */
     .mode-toggle {
       position: fixed;
       top: 20px;
@@ -193,7 +190,7 @@
 
 <body class="font-sans min-h-screen flex items-start justify-center py-12 px-4" :class="darkMode ? '' : 'light'">
 
-  <!-- ===== DARK/LIGHT TOGGLE ===== -->
+  <!-- Toggle Mode -->
   <button @click="darkMode = !darkMode" class="mode-toggle" aria-label="Toggle theme">
     <template x-if="darkMode">
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
@@ -205,12 +202,11 @@
 
   <!-- Background Decoration -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full" :class="darkMode ? 'bg-green-500/5' : 'bg-green-500/10'" style="transition: background 0.3s;"></div>
-    <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full" :class="darkMode ? 'bg-blue-500/5' : 'bg-blue-500/10'" style="transition: background 0.3s;"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full" :class="darkMode ? 'bg-green-500/5' : 'bg-green-500/10'"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full" :class="darkMode ? 'bg-blue-500/5' : 'bg-blue-500/10'"></div>
   </div>
 
   <div class="w-full max-w-lg relative z-10">
-
     <!-- Header -->
     <div class="mb-8 text-center">
       <div class="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full text-xs font-mono method-badge">
@@ -223,8 +219,6 @@
 
     <!-- FORM CARD -->
     <div class="glass rounded-2xl p-6 mb-5" x-show="!result">
-
-      <!-- Payment Method -->
       <div class="mb-5 pb-5 border-b" :class="darkMode ? 'border-white/5' : 'border-black/5'">
         <p class="text-xs font-mono text-green-400 mb-3 uppercase tracking-widest">💳 Metode Pembayaran</p>
         <div>
@@ -265,53 +259,43 @@
         </div>
       </div>
 
-      <!-- Customer & Transaction Info -->
       <div class="mb-5 pb-5 border-b" :class="darkMode ? 'border-white/5' : 'border-black/5'">
         <p class="text-xs font-mono text-green-400 mb-3 uppercase tracking-widest">👤 Data Transaksi</p>
         <div class="grid grid-cols-1 gap-3">
           <div>
             <label class="block mb-1" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">Jumlah (Rp)</label>
-            <input type="number" x-model="form.amount" placeholder="Contoh: 100000"
-              class="input-field w-full rounded-lg px-3 py-2.5 text-sm"/>
+            <input type="number" x-model="form.amount" placeholder="Contoh: 100000" class="input-field w-full rounded-lg px-3 py-2.5 text-sm"/>
           </div>
           <div>
             <label class="block mb-1" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">Nama Customer</label>
-            <input type="text" x-model="form.customer_name" placeholder="Jhon Doe"
-              class="input-field w-full rounded-lg px-3 py-2.5 text-sm"/>
+            <input type="text" x-model="form.customer_name" placeholder="Jhon Doe" class="input-field w-full rounded-lg px-3 py-2.5 text-sm"/>
           </div>
           <div>
             <label class="block mb-1" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">Email Customer</label>
-            <input type="email" x-model="form.customer_email" placeholder="jhon@gmail.com"
-              class="input-field w-full rounded-lg px-3 py-2.5 text-sm"/>
+            <input type="email" x-model="form.customer_email" placeholder="jhon@gmail.com" class="input-field w-full rounded-lg px-3 py-2.5 text-sm"/>
           </div>
           <div>
             <label class="block mb-1" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">No. HP Customer</label>
-            <input type="text" x-model="form.customer_phone" placeholder="08xxxxxxxxxx"
-              class="input-field w-full rounded-lg px-3 py-2.5 text-sm font-mono"/>
+            <input type="text" x-model="form.customer_phone" placeholder="08xxxxxxxxxx" class="input-field w-full rounded-lg px-3 py-2.5 text-sm font-mono"/>
           </div>
           <div>
             <label class="block mb-1" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">Deskripsi Item</label>
-            <input type="text" x-model="form.item_details" placeholder="Pembelian produk kamera"
-              class="input-field w-full rounded-lg px-3 py-2.5 text-sm"/>
+            <input type="text" x-model="form.item_details" placeholder="Pembelian produk kamera" class="input-field w-full rounded-lg px-3 py-2.5 text-sm"/>
           </div>
           <div class="flex items-center gap-3 pt-1">
             <button @click="form.payment_guide = !form.payment_guide"
               :class="form.payment_guide ? 'bg-green-500' : (darkMode ? 'bg-slate-700' : 'bg-slate-300')"
               class="relative inline-flex h-5 w-9 rounded-full transition-colors cursor-pointer">
-              <span :class="form.payment_guide ? 'translate-x-4' : 'translate-x-0.5'"
-                class="inline-block h-4 w-4 mt-0.5 rounded-full bg-white transition-transform shadow"></span>
+              <span :class="form.payment_guide ? 'translate-x-4' : 'translate-x-0.5'" class="inline-block h-4 w-4 mt-0.5 rounded-full bg-white transition-transform shadow"></span>
             </button>
             <span class="text-sm" :class="darkMode ? 'text-slate-300' : 'text-slate-700'">Tampilkan Payment Guide <span class="text-xs" :class="darkMode ? 'text-slate-500' : 'text-slate-400'">(optional)</span></span>
           </div>
         </div>
       </div>
 
-      <!-- Error -->
       <div x-show="error" x-transition class="mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm" x-text="error"></div>
 
-      <!-- Submit -->
-      <button @click="submit()" :disabled="loading"
-        class="btn-pay w-full py-3 rounded-xl text-white font-semibold text-sm flex items-center justify-center gap-2">
+      <button @click="submit()" :disabled="loading" class="btn-pay w-full py-3 rounded-xl text-white font-semibold text-sm flex items-center justify-center gap-2">
         <span x-show="loading">
           <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -321,13 +305,10 @@
         <span x-show="!loading">⚡</span>
         <span x-text="loading ? 'Memproses...' : 'Buat Pembayaran'"></span>
       </button>
-
     </div>
 
     <!-- RESULT CARD -->
     <div x-show="result" x-transition class="result-card glass rounded-2xl p-6">
-
-      <!-- Header -->
       <div class="flex items-center justify-between mb-5">
         <div>
           <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs method-badge font-mono mb-1">
@@ -342,7 +323,6 @@
         </button>
       </div>
 
-      <!-- Transaction Detail -->
       <div class="space-y-2 mb-5">
         <template x-for="[key, val] in Object.entries({
           'Transaction ID': result?.data?.transaction_id,
@@ -355,8 +335,6 @@
             <span class="font-mono text-xs" :class="darkMode ? 'text-white' : 'text-slate-900'" x-text="val"></span>
           </div>
         </template>
-
-        <!-- Amount rows -->
         <div class="flex justify-between items-center py-2 border-b text-sm" :class="darkMode ? 'border-white/5' : 'border-black/5'">
           <span class="text-slate-400">Nominal</span>
           <span class="font-mono text-xs" :class="darkMode ? 'text-white' : 'text-slate-900'" x-text="'Rp ' + (result?.data?.amount||0).toLocaleString('id-ID')"></span>
@@ -371,10 +349,7 @@
         </div>
       </div>
 
-      <!-- Dynamic Payment Display -->
       <div class="mb-4">
-        
-        <!-- Jika E-Wallet (Link) -->
         <template x-if="isEwallet()">
           <div>
             <label class="block mb-2" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">Link Pembayaran E-Wallet</label>
@@ -383,61 +358,43 @@
             </a>
           </div>
         </template>
-
-        <!-- Jika QRIS (Image) -->
         <template x-if="isQris() && !isEwallet()">
           <div>
             <label class="block mb-2" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">Scan QRIS</label>
             <div class="p-4 rounded-xl inline-block mx-auto flex justify-center mb-3" :class="darkMode ? 'bg-white' : 'bg-white/80'">
               <img :src="'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(result?.data?.payment_code || '')" alt="QRIS" class="w-48 h-48 mx-auto"/>
             </div>
-            <!-- Teks QRIS Copy -->
             <div class="relative mt-1">
               <div class="input-field rounded-lg p-3 qr-code-text text-green-300 max-h-28 overflow-y-auto" :class="darkMode ? 'text-green-300' : 'text-green-700'" x-text="result?.data?.payment_code"></div>
-              <button @click="copyCode(result?.data?.payment_code)"
-                class="absolute top-2 right-2 px-2 py-1 text-xs rounded bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-colors"
-                x-text="copied ? '✓ Copied' : 'Copy'">
-              </button>
+              <button @click="copyCode(result?.data?.payment_code)" class="absolute top-2 right-2 px-2 py-1 text-xs rounded bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-colors" x-text="copied ? '✓ Copied' : 'Copy'"></button>
             </div>
           </div>
         </template>
-
-        <!-- Jika VA / Retail (Teks VA Number) -->
         <template x-if="!isEwallet() && !isQris() && result?.data?.payment_code">
           <div>
             <label class="block mb-2" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">Payment Code / VA Number</label>
             <div class="relative">
               <div class="input-field rounded-lg p-3 qr-code-text text-green-300 max-h-28 overflow-y-auto" :class="darkMode ? 'text-green-300' : 'text-green-700'" x-text="result?.data?.payment_code"></div>
-              <button @click="copyCode(result?.data?.payment_code)"
-                class="absolute top-2 right-2 px-2 py-1 text-xs rounded bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-colors"
-                x-text="copied ? '✓ Copied' : 'Copy'">
-              </button>
+              <button @click="copyCode(result?.data?.payment_code)" class="absolute top-2 right-2 px-2 py-1 text-xs rounded bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-colors" x-text="copied ? '✓ Copied' : 'Copy'"></button>
             </div>
           </div>
         </template>
       </div>
 
-      <!-- Payment Guide -->
       <div x-show="result?.data?.payment_guide" class="mt-4">
         <label class="block mb-2" :class="darkMode ? 'text-slate-400' : 'text-slate-600'">📖 Panduan Pembayaran</label>
         <div class="input-field rounded-lg p-4 text-sm leading-relaxed prose-sm max-h-64 overflow-y-auto"
-          :class="darkMode ? 'text-slate-300' : 'text-slate-700'"
-          x-html="result?.data?.payment_guide">
-        </div>
+          :class="darkMode ? 'text-slate-300' : 'text-slate-700'" x-html="result?.data?.payment_guide"></div>
       </div>
-
     </div>
 
-    <!-- Footer -->
-    <p class="text-center text-xs mt-6 font-mono" :class="darkMode ? 'text-slate-600' : 'text-slate-400'">
-      Payment Gateway API
-    </p>
+    <p class="text-center text-xs mt-6 font-mono" :class="darkMode ? 'text-slate-600' : 'text-slate-400'">Payment Gateway API</p>
   </div>
 
   <script>
     function paymentApp() {
       return {
-        darkMode: true, // default dark
+        darkMode: true,
         form: {
           bank_code: '',
           amount: '',
@@ -462,7 +419,6 @@
           if (!this.result?.data) return false;
           if (this.result.data.checkout_url || this.result.data.payment_url) return true;
           if (this.result.data.payment_code && String(this.result.data.payment_code).startsWith('http')) return true;
-          
           const method = (this.result.data.payment_method || '').toUpperCase();
           const code = (this.form.bank_code || '').toUpperCase();
           const ewallets = ['DA', 'OV', 'LA', 'SA', 'SHOPEEPAY', 'GOPAY', 'VIRGO'];
@@ -476,12 +432,12 @@
 
         validate() {
           const f = this.form;
-          if (!f.bank_code)      return 'Metode pembayaran wajib dipilih';
+          if (!f.bank_code) return 'Metode pembayaran wajib dipilih';
           if (!f.amount || isNaN(f.amount) || +f.amount < 1) return 'Jumlah tidak valid';
-          if (!f.customer_name)  return 'Nama customer wajib diisi';
+          if (!f.customer_name) return 'Nama customer wajib diisi';
           if (!f.customer_email) return 'Email customer wajib diisi';
           if (!f.customer_phone) return 'No. HP customer wajib diisi';
-          if (!f.item_details)   return 'Deskripsi item wajib diisi';
+          if (!f.item_details) return 'Deskripsi item wajib diisi';
           return null;
         },
 
@@ -493,12 +449,17 @@
           this.loading = true;
           try {
             const payload = {
-              ...this.form,
-              payment_guide: this.form.payment_guide ? 'true' : 'false',
+              bank_code: this.form.bank_code,
               amount: String(this.form.amount),
+              customer_name: this.form.customer_name,
+              customer_email: this.form.customer_email,
+              customer_phone: this.form.customer_phone,
+              payment_guide: this.form.payment_guide ? 'true' : 'false',
+              item_details: this.form.item_details,
             };
 
-            const res = await axios.post('process.php', payload, {
+            // ===== FIX: Arahkan ke endpoint Vercel yang bener =====
+            const res = await axios.post('/api/process', payload, {
               headers: { 'Content-Type': 'application/json' }
             });
 
@@ -511,7 +472,7 @@
             if (e.response?.data?.msg) {
               this.error = e.response.data.msg;
             } else {
-              this.error = 'Gagal terhubung ke server. Pastikan process.php berjalan.';
+              this.error = 'Gagal terhubung ke server. Pastikan backend di Vercel sudah jalan.';
             }
           } finally {
             this.loading = false;
