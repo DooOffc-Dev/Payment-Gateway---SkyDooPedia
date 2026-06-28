@@ -3,6 +3,10 @@
     {
       "src": "process.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -12,7 +16,7 @@
     },
     {
       "src": "/",
-      "dest": "process.py"
+      "dest": "index.html"
     }
   ]
 }
